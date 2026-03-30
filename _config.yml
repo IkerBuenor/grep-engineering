@@ -1,0 +1,5 @@
+theme: minima
+title: GREP Engineering
+description: Replacing LLM memory with deterministic search. A 1973 Unix technique for 2026 AI workflows.
+url: https://ikerbuenor.github.io
+baseurl: /grep-engineering
