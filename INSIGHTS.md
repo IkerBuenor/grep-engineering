@@ -12,6 +12,20 @@ grep "GREP-check" INSIGHTS.md
 
 ---
 
+## 2026-03-31
+
+[INSIGHT-007]
+**The watchmaker principle.**
+A watchmaker does not memorize the watch — they understand it. GREP Engineering does not memorize — it verifies. Memorization degrades with context length. Deterministic search does not.
+*Context: session 31-03-2026.*
+
+[INSIGHT-008]
+**The triple pass origin.**
+The Unix C compiler (Dennis Ritchie, 1972) used three separate passes due to RAM limitations: lexer → parser → code generator. The constraint — limited memory window — is identical for LLMs. The solution is identical: separate reading, structuring, and extraction. Pass 1 cost: ~6.9% of input, stable regardless of corpus size.
+*Context: session 31-03-2026 → confirmed 02-04-2026.*
+
+---
+
 ## 2026-03-29
 
 [INSIGHT-001]
@@ -36,7 +50,7 @@ Structuring conversation output with consistent tags makes semantic search deter
 
 [INSIGHT-005]
 **GREP-check for code analysis.**
-The LLM maps repository structure via grep before analyzing code. This reduces the context needed for the analysis and allows the model to understand the structure first, then analyze with far fewer errors. Extends GREP Engineering from document verification to software development workflows. Potential application: post-session code review in Emergent to detect undocumented implementations.
+The LLM maps repository structure via grep before analyzing code. This reduces the context needed for the analysis and allows the model to understand the structure first, then analyze with far fewer errors. Extends GREP Engineering from document verification to software development workflows.
 *Context: session developing GREP Engineering GH Pages.*
 
 [INSIGHT-006]
@@ -61,3 +75,4 @@ Description. What was discovered, decided, or imagined.
 
 *Add new entries at the top of the relevant date section.*
 *This file is the grep-able equivalent of a lab notebook.*
+*License: CC BY-NC 4.0 · Iker Alvarez Neira · 2026*
