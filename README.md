@@ -21,6 +21,14 @@ GREP Engineering replaces probabilistic recall with deterministic verification. 
 
 This methodology was developed building [FORMA](https://shape-builder-12.preview.emergentagent.com) — an AI image generation platform — using Claude, Emergent, and Linux. Two months. Zero prior coding experience.
 
+## License
+
+**Protocol and documentation** (GREP_ENGINEERING_PROTOCOL.txt, GLOSSARY.md, INSIGHTS.md, index.md):
+[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) — free for personal and research use, commercial use requires permission.
+
+**Tools and code** (search.json, scripts):
+[Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0) — free for any use including commercial, attribution required.
+
 ---
 
 *grep was created by Ken Thompson in 1973 at Bell Labs as part of Unix.*
