@@ -1,7 +1,242 @@
 GREP ENGINEERING — FILE VERIFICATION PROTOCOL
 Version 2.0 · English · grepengineering.com
 
+If there is a conflict between theGREP ENGINEERING — FILE VERIFICATION PROTOCOL
+Version 3.0 · English · grepengineering.com
+
 If there is a conflict between the preferences version and this file, this file prevails.
+
+════════════════════════════════════════════════════════════════
+
+ACTIVATION TRIGGERS
+
+Activate with any of the following phrases:
+
+English:
+  "grep check"
+  "grep-check"
+  "verify nothing is missing"
+  "cross-check documents"
+  "cross-check"
+  "check completeness"
+
+Spanish (accepted as shortcuts):
+  "coteja"
+  "coteja esto"
+  "comprueba que no falte nada"
+  "verifica que no falta nada"
+
+Apply PREVENTIVELY before delivering any generated DOCX file,
+without being asked.
+
+════════════════════════════════════════════════════════════════
+
+STEP 0 — Verify the reference document is complete
+
+Before starting, ask: are there decisions made in this
+conversation not yet recorded in any file?
+
+Maintain a file "decisions_pending.txt" in the project,
+updated at the end of each session. If it exists, read it
+before Step 1 and incorporate its contents into the reference
+document.
+
+A verification against an outdated reference passes all checks
+but omits the most recent decisions. This is the most common
+failure mode.
+
+════════════════════════════════════════════════════════════════
+
+STEP 1 — Extract all items from the reference document
+
+Read the reference document in full. Extract ALL items using
+grep or structured search.
+
+- If structured IDs exist (F1.1, E14, R3): extract by ID
+- If no IDs: extract by the first 4-5 unique words of each item
+- Do not summarize or infer — exhaustive list, no exceptions
+- If volume exceeds 200 items: split by sections, report each
+  section separately
+
+════════════════════════════════════════════════════════════════
+
+STEP 2 — Bidirectional mechanical verification
+
+Direction A (what is missing):
+For each reference item, grep against the working document.
+If not found by ID or exact text, run a semantic search with
+key terms before declaring it absent — may be present under
+a different label.
+
+Status codes:
+  present
+  absent
+  partial or different label
+  merge with X (absorbed by a more complete item)
+
+Direction B (what is orphaned):
+For each working document item, verify it has a match in the
+reference document. Flag orphaned items for removal, merge,
+or reclassification — they may have been cancelled or
+superseded.
+
+════════════════════════════════════════════════════════════════
+
+STEP 2B — Optional: verify against code
+Activate with: "grep-check code"
+
+When you need to verify that documented tasks are actually
+implemented: grep the IDs or module names from the working
+document against the repository files.
+
+Detects:
+  (A) Tasks marked complete in the document but absent from code
+  (B) Code implemented but not documented in the plan
+
+Example bash:
+  for term in "watermark" "fingerprint" "app_settings"; do
+    echo "=== $term ===" && \
+    grep -r "$term" ./backend ./frontend \
+    --include="*.py" --include="*.jsx" -l
+  done
+
+════════════════════════════════════════════════════════════════
+
+STEP 3 — Report before modifying
+
+Show the complete table with three columns:
+  item | status | note
+
+Include both missing items (Direction A) and orphaned items
+(Direction B). If items have status merge, propose which item to
+merge with before confirming.
+
+WAIT FOR EXPLICIT CONFIRMATION before proceeding.
+
+If all absent items are clearly the same type, the user may
+confirm with "all".
+
+════════════════════════════════════════════════════════════════
+
+STEP 4 — Modify and second pass
+
+Add absent items and manage orphans per confirmation, without
+modifying what must remain.
+
+Run a SECOND GREP PASS to verify:
+- Every added item is physically in the file
+- Every removed item no longer appears
+
+Report only after the second verification:
+"X items checked, Y present, Z added, W orphans managed,
+0 pending."
+
+════════════════════════════════════════════════════════════════
+
+THE TRIPLE PASS METHOD
+
+For session reports and complex verifications, apply three passes:
+
+Pass 1: Pure read — no tagging, no notes. The model reads and
+         encodes without interference.
+
+Pass 2: Mechanical tagging — grep deterministically for taggable
+         terms. Tag each item by category as found. No summarizing,
+         no inference, no memory.
+
+Pass 3: Deterministic extraction — build the output exclusively
+         from Pass 2 tags. Do not use memory in Pass 3.
+         This is the output.
+
+Calibration data (real experiment, March 2026):
+- Memory method: 36% omission rate, output 4.5% of input
+- Triple pass P1: ~6.9% of input (stable, scales linearly)
+- Triple pass output: ~8-9.5% of input
+- Omission: 0%
+
+The Pass 1 percentage is stable regardless of corpus size.
+The method scales linearly.
+
+Origin: the Unix C compiler (Dennis Ritchie, 1972) used three
+separate passes due to RAM limitations. The constraint —
+limited memory window — is the same for LLMs.
+
+════════════════════════════════════════════════════════════════
+
+SESSION TAGS — RECOVERABLE BY SEARCH
+
+Use these tags in conversations. Claude retrieves all three
+in future sessions using the chat history search tool.
+
+  [DECISION: X]  — decision made that affects the project
+                   or workflow
+  [INSIGHT: X]   — moment of discovery with emotional or
+                   strategic impact
+  [IDEA: X]      — new undeveloped idea to explore later
+
+Rules:
+  - Exact format: square brackets, uppercase tag, colon, space
+  - Claude stores all three in INSIGHTS.md with date
+  - Enables grep-based retrieval across sessions
+  - Reduces tokens vs. full context recall
+
+Example:
+  [DECISION: use Flux Kontext Pro for Type Assistant pipeline]
+  [INSIGHT: GREP Engineering applies to any indexable system]
+  [IDEA: GREP-check for code repository structure mapping]
+
+════════════════════════════════════════════════════════════════
+
+ROBUSTNESS NOTE
+
+This protocol is stored both in user preferences and in the
+project repository. If there is a conflict, this file prevails.
+
+This file is also published at:
+  https://ikerbuenor.github.io/grep-engineering
+  https://github.com/IkerBuenor/grep-engineering
+
+════════════════════════════════════════════════════════════════
+
+HOW TO GREP-CHECK A GITHUB REPOSITORY
+
+Method A — From Emergent terminal (fastest):
+  grep -r "module_name" /app/backend/ /app/frontend/src/
+
+Method B — From local clone:
+  grep -r "term" . --include="*.py" --include="*.jsx" -l
+
+Method C — GitHub API (requires token):
+  GET https://api.github.com/search/code?q=term+repo:IkerBuenor/REPO
+
+Correspondence table (document name → code name):
+  Document term          → Search term in code
+  ─────────────────────────────────────────────
+  Type Assistant         → fuse_prompt_with_reference
+  Watermark              → post_process_image + watermark
+  Fingerprint            → device_fingerprint / FingerprintJS
+  Settings Panel         → app_settings
+  Stripe webhook         → construct_event / whsec
+  Bulk operations        → bulk_delete / bulk_download
+  Recovery codes         → recovery_codes (bcrypt)
+
+════════════════════════════════════════════════════════════════
+
+LICENSE
+
+Protocol and documentation: CC BY-NC 4.0
+Free for personal and research use. Commercial use requires permission.
+https://creativecommons.org/licenses/by-nc/4.0/
+
+Tools and code (search.json, scripts): Apache 2.0
+Free for any use including commercial, attribution required.
+https://www.apache.org/licenses/LICENSE-2.0
+
+════════════════════════════════════════════════════════════════
+
+GREP Engineering · Iker Alvarez Neira · 2026
+grepengineering.com · github.com/IkerBuenor/grep-engineering
+ preferences version and this file, this file prevails.
 
 ════════════════════════════════════════════════════════════════
 
