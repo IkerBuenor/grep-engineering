@@ -131,6 +131,24 @@ Report only after the second verification:
 
 ---
 
+## The Triple Pass Method
+
+For session reports and complex verifications, three passes eliminate omission entirely.
+
+| Pass | Action | Memory used |
+|------|--------|-------------|
+| Pass 1 | Pure read — no tagging, no notes | None |
+| Pass 2 | Mechanical tagging by grep-able terms | None |
+| Pass 3 | Extraction from Pass 2 tags only | None |
+
+**Omission rate: 0%.** Memory-based method: 36%.
+
+Pass 1 cost: ~6.9% of input tokens. Stable regardless of corpus size — the method scales linearly.
+
+The origin: the Unix C compiler (Dennis Ritchie, 1972) used three separate passes due to RAM limitations. The constraint — limited memory window — is identical for LLMs.
+
+---
+
 ## Session Tags — Recoverable by Search
 
 Structure your conversations with these tags. Claude retrieves all three in future sessions using the chat history search tool.
@@ -191,3 +209,11 @@ Two months. Zero prior coding experience. Linux, Claude, Emergent.
 ---
 
 *Iker Alvarez Neira · 2026 · [grepengineering.com](https://grepengineering.com)*
+
+---
+
+## License
+
+**Protocol and documentation:** [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) — free for personal and research use, commercial use requires permission.
+
+**Tools and code** (search.json, scripts): [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0) — free for any use including commercial, attribution required.
