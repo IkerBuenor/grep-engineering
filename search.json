@@ -2,61 +2,67 @@
   {
     "id": "GREP-001",
     "term": "GREP Engineering",
-    "definition": "Practice of replacing LLM memory with deterministic search in AI-assisted workflows",
+    "definition": "Practice of replacing LLM memory with deterministic search in AI-assisted workflows. A 1973 Unix technique applied to 2026 AI systems.",
     "category": "core"
   },
   {
     "id": "GREP-002",
     "term": "Deterministic search",
-    "definition": "Search that returns identical results regardless of model state or session history",
+    "definition": "Search that returns identical results regardless of model state, context length, or session history. Unlike LLM recall, it does not degrade.",
     "category": "core"
   },
   {
     "id": "GREP-003",
     "term": "Token reduction",
-    "definition": "91% fewer tokens per verification cycle. 91M tokens saved weekly at 10,000 users",
+    "definition": "91% fewer tokens per verification cycle. At 10,000 users/week: 91M tokens saved, ~$273,000/week systemic savings.",
     "category": "metrics"
   },
   {
     "id": "GREP-004",
     "term": "Bidirectional verification",
-    "definition": "Direction A: what is missing. Direction B: what is orphaned. Both required.",
+    "definition": "Direction A: what is missing from working document. Direction B: what is orphaned. Both directions required for complete verification.",
     "category": "protocol"
   },
   {
     "id": "GREP-005",
     "term": "Context window drift",
-    "definition": "LLM recall loss for items in the middle of long contexts. Architectural, not a bug.",
+    "definition": "LLM recall loss for items in the middle of long contexts. Items at start and end recalled more reliably. Architectural, not a bug.",
     "category": "problem"
   },
   {
     "id": "GREP-006",
     "term": "Session tags",
-    "definition": "[DECISION], [INSIGHT], [IDEA] — structured labels for grep-based cross-session retrieval",
+    "definition": "[DECISION], [INSIGHT], [IDEA] — structured labels for grep-based cross-session retrieval. Anchor embeddings, reduce token cost.",
     "category": "extension"
   },
   {
     "id": "GREP-007",
     "term": "GREP-check",
-    "definition": "Application of GREP Engineering to code repositories. Map structure via grep before analyzing.",
+    "definition": "Application of GREP Engineering to code repositories. Map structure via grep before analyzing. Detects documented-but-unimplemented and implemented-but-undocumented.",
     "category": "extension"
   },
   {
     "id": "GREP-008",
     "term": "Ken Thompson",
-    "definition": "Creator of grep, 1973, Bell Labs, Unix. Not Linus Torvalds (Linux, 1991).",
+    "definition": "Creator of grep, 1973, Bell Labs, Unix. Co-creator of Unix and C. Not Linus Torvalds (Linux, 1991).",
     "category": "history"
   },
   {
     "id": "GREP-009",
     "term": "Orphaned item",
-    "definition": "Present in working document but absent from reference. Detected by Direction B.",
+    "definition": "Present in working document but absent from reference. Detected by Direction B. May indicate cancelled task or superseded decision.",
     "category": "protocol"
   },
   {
     "id": "GREP-010",
     "term": "Prior art",
-    "definition": "Public timestamped GitHub commit establishing authorship without requiring a patent.",
+    "definition": "Public timestamped GitHub commit establishing authorship without requiring a patent. Commit timestamp is the legal evidence.",
     "category": "legal"
+  },
+  {
+    "id": "GREP-011",
+    "term": "Triple pass",
+    "definition": "Three-pass verification method. Pass 1: pure read, no tagging. Pass 2: mechanical tagging by grep-able terms. Pass 3: deterministic extraction from tags only. Omission: 0%. Pass 1 cost: ~6.9% of input, stable regardless of corpus size. Origin: Unix C compiler, Dennis Ritchie, 1972.",
+    "category": "core"
   }
 ]
